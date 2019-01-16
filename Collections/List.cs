@@ -17,15 +17,10 @@ namespace Collections
 
         public T this[int index]
         {
-            //dsfsdfsdfdsfdfsdfgsdgsdgsdgsgds
             get => initialArray[index];
             set => initialArray[index] = value;
         }
 
-        public int Test()
-        {
-            return 0;
-        }
         public IEnumerator<T>  GetEnumerator()
         {
             var sum = 0;
