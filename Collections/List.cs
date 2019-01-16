@@ -29,7 +29,16 @@ namespace Collections
             }
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        /////
+        //////
+        //////
+        //////
+        //////
+        ///
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
