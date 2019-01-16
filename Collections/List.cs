@@ -23,11 +23,9 @@ namespace Collections
 
         public IEnumerator<T>  GetEnumerator()
         {
-            var sum = 0;
             for (int i = 0; i < Count; i++)
             {
                 yield return initialArray[i];
-                sum += i;
             }
 
         }
