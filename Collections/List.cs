@@ -13,7 +13,7 @@ namespace Collections
 
         public T[] Array => initialArray;
 
-        public bool IsReadOnly => false;
+        public bool IsReadOnly => true;
 
         public T this[int index]
         {
