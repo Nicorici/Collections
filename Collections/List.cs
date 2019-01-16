@@ -54,9 +54,7 @@ namespace Collections
 
         public bool Contains(T element)
         {
-            if (IndexOf(element) != -1)
-                return true;
-            return false;
+            return (IndexOf(element) != -1);
         }
 
         public virtual void Insert(int index, T element)
