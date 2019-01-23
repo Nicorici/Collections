@@ -8,16 +8,18 @@ namespace Collections
     {
         static void Main()
         {
-            var sss = new SortedList<int>
-            {
-                1,
-                5,
-                4,
-                2
-            };
-            for (int i=0;i<sss.Array.Length;i++)
-                Console.WriteLine(sss.Array[i]);
+              var linked = new System.Collections.Generic.LinkedList<int>();
+            var node = new LinkedListNode<int>(1);
+            linked.AddFirst(node);
+            var x = linked.AddAfter(node, 5);
+
+            var list = new LinkedList<int>() {1,2,3,4 };
+            list.Print();
+            list.Print();
+            list.FindFirst(4);
             Console.Read();
+
+
         }
 
     }

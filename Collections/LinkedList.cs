@@ -98,7 +98,7 @@ namespace Collections
             if (value.Equals(sentinel.Value))
                 return sentinel;
 
-            while (!(current.Equals(sentinel)))
+            while (!current.Equals(sentinel))
             {
                 if (current.Value.Equals(value))
                 {
@@ -126,7 +126,7 @@ namespace Collections
 
         public void Add(T value)
         {
-            AddLast(value);
+            AddFirst(value);
         }
 
         public void CopyTo(T[] array, int arrayIndex)
@@ -157,7 +157,4 @@ namespace Collections
             return GetEnumerator();
         }
     }
-
-
-
 }
