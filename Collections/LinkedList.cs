@@ -39,12 +39,11 @@ namespace Collections
         public Node<T> AddAfter(Node<T> node, T value)
         {
             var newNode = new Node<T>() { Value = value };
-            var inserAfter = FindFirst(node.Value);
 
-            newNode.Next = inserAfter.Next;
-            newNode.Previous = inserAfter;
-            inserAfter.Next.Previous = newNode;
-            inserAfter.Next = newNode;
+            newNode.Next = node.Next;
+            newNode.Previous = node;
+            node.Next.Previous = newNode;
+            node.Next = newNode;
             Count++;
             return newNode;
         }
@@ -61,15 +60,13 @@ namespace Collections
 
         public Node<T> AddBefore(Node<T> node, T value)
         {
-            var insertBefore = Find(sentinel.Next, node.Value);
-           return AddAfter(insertBefore.Previous, value);
+           return AddAfter(node.Previous, value);
         }
 
         public void Remove(Node<T> node)
         {
-            var toRemove = Find(sentinel.Next, node.Value);
-            toRemove.Previous.Next = toRemove.Next;
-            toRemove.Next.Previous = toRemove.Previous;
+            node.Previous.Next = node.Next;
+            node.Next.Previous = node.Previous;
             Count--;
         }
 
