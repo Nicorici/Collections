@@ -36,7 +36,7 @@ namespace Collections
             return !(FindFirst(value).Equals(null));
         }
 
-        public void AddAfter(Node<T> node, T value, int sameElementIndex = 0)
+        public Node<T> AddAfter(Node<T> node, T value, int sameElementIndex = 0)
         {
             var newNode = new Node<T>() { Value = value };
             var inserAfter = Find(sentinel.Next, node.Value, sameElementIndex);
@@ -46,22 +46,23 @@ namespace Collections
             inserAfter.Next.Previous = newNode;
             inserAfter.Next = newNode;
             Count++;
+            return newNode;
         }
 
-        public void AddFirst(T value)
+        public Node<T> AddFirst(T value)
         {
-            AddAfter(sentinel, value);
+           return AddAfter(sentinel, value);
         }
 
-        public void AddLast(T value)
+        public Node<T> AddLast(T value)
         {
-            AddAfter(sentinel.Previous, value);
+           return AddAfter(sentinel.Previous, value);
         }
 
-        public void AddBefore(Node<T> node, T value, int sameElementIndex = 0)
+        public Node<T> AddBefore(Node<T> node, T value, int sameElementIndex = 0)
         {
             var insertBefore = Find(sentinel.Next, node.Value, sameElementIndex);
-            AddAfter(insertBefore.Previous, value);
+           return AddAfter(insertBefore.Previous, value);
         }
 
         public void Remove(Node<T> node, int sameElementIndex = 0)

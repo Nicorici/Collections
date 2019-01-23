@@ -50,16 +50,6 @@ namespace Collections.Tests
         }
 
         [Fact]
-        public void AddElementAfterTheThirdOccurenceOfTheValue1()
-        {
-            var linkedList = new LinkedList<int>() { 4, 3, 1, 1,1};
-            var node = new Node<int>() { Value = 5 };
-            linkedList.AddAfter(node,88,3);
-            Assert.Equal("4 3 88 1 1 1", linkedList.Print());
-        }
-
-       
-        [Fact]
         public void ClearAListOfElemnts()
         {
             var linkedList = new LinkedList<int>() { 9, 9, 8, 8, 7, 7, 7, 6, 5, 4, 3, 2, 2, 2, 1, 1, 1 };
