@@ -36,10 +36,10 @@ namespace Collections
             return !(FindFirst(value).Equals(null));
         }
 
-        public Node<T> AddAfter(Node<T> node, T value, int sameElementIndex = 0)
+        public Node<T> AddAfter(Node<T> node, T value)
         {
             var newNode = new Node<T>() { Value = value };
-            var inserAfter = Find(sentinel.Next, node.Value, sameElementIndex);
+            var inserAfter = Find(sentinel.Next, node.Value);
 
             newNode.Next = inserAfter.Next;
             newNode.Previous = inserAfter;
@@ -59,15 +59,15 @@ namespace Collections
            return AddAfter(sentinel.Previous, value);
         }
 
-        public Node<T> AddBefore(Node<T> node, T value, int sameElementIndex = 0)
+        public Node<T> AddBefore(Node<T> node, T value)
         {
-            var insertBefore = Find(sentinel.Next, node.Value, sameElementIndex);
+            var insertBefore = Find(sentinel.Next, node.Value);
            return AddAfter(insertBefore.Previous, value);
         }
 
-        public void Remove(Node<T> node, int sameElementIndex = 0)
+        public void Remove(Node<T> node)
         {
-            var toRemove = Find(sentinel.Next, node.Value, sameElementIndex);
+            var toRemove = Find(sentinel.Next, node.Value);
             toRemove.Previous.Next = toRemove.Next;
             toRemove.Next.Previous = toRemove.Previous;
             Count--;
@@ -90,9 +90,8 @@ namespace Collections
         }
 
 
-        private Node<T> Find(Node<T> current, T value, int countElement = 0)
+        private Node<T> Find(Node<T> current, T value)
         {
-            int sameElementCount = 0;
             bool clockwise = current.Equals(sentinel.Next);
 
             if (value.Equals(sentinel.Value))
@@ -102,9 +101,7 @@ namespace Collections
             {
                 if (current.Value.Equals(value))
                 {
-                    if (countElement == sameElementCount)
                         return current;
-                    sameElementCount++;
                 }
                 current = clockwise ? current.Next : current.Previous;
             }
