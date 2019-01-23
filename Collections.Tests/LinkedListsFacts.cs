@@ -45,7 +45,7 @@ namespace Collections.Tests
         {
             var linkedList = new LinkedList<int>() { 6, 5, 4, 3, 2, 1 };
             var node = new Node<int>() { Value = 5 };
-            linkedList.AddAfter(node,88);
+            linkedList.AddAfter(node, 88);
             Assert.Equal("1 2 3 4 5 88 6", linkedList.Print());
         }
 
@@ -57,8 +57,68 @@ namespace Collections.Tests
             Assert.Equal("", linkedList.Print());
         }
 
-       
+        [Fact]
+        public void AddAnElementAfterAnElementThatIsNotInTheList()
+        {
+            var linkedList = new LinkedList<int>();
+            var node = new Node<int>() { Value=8};
+            Assert.Throws<NullReferenceException>(() => linkedList.AddAfter(node, 3));
+        }
 
+        [Fact]
+        public void RemoveFirstElementOfAList()
+        {
+            var linkedList = new LinkedList<int>();
+            linkedList.AddFirst(3);
+            linkedList.AddFirst(2);
+            linkedList.AddFirst(1);
+            linkedList.RemoveFirst();
+            Assert.Equal("2 3", linkedList.Print());
+        }
+
+        [Fact]
+        public void RemoveLastElementOfAList()
+        {
+            var linkedList = new LinkedList<int>();
+            linkedList.AddFirst(3);
+            linkedList.AddFirst(2);
+            linkedList.AddFirst(1);
+            linkedList.RemoveLast();
+            Assert.Equal("1 2", linkedList.Print());
+        }
+
+        [Fact]
+        public void RemoveAnElementFromTheList()
+        {
+            var linkedList = new LinkedList<int>();
+            linkedList.AddFirst(3);
+            var remove=linkedList.AddFirst(2);
+            linkedList.AddFirst(1);
+            linkedList.Remove(remove);
+            Assert.Equal("1 3", linkedList.Print());
+        }
+
+        [Fact]
+        public void TryRemovingAnElementThatIsNotInTheList()
+        {
+            var linkedList = new LinkedList<int>();
+            linkedList.AddFirst(3);
+            linkedList.AddFirst(2);
+            linkedList.AddFirst(1);
+            var node = new Node<int> { Value = 8 };
+            Assert.Throws<NullReferenceException>(() => linkedList.Remove(node));
+        }
+
+        [Fact]
+        public void TryRemovingAnElementAlreadyRemovedFromTheList()
+        {
+            var linkedList = new LinkedList<int>();
+            linkedList.AddFirst(3);
+           var remove= linkedList.AddFirst(2);
+            linkedList.AddFirst(1);
+            linkedList.Remove(remove);
+            Assert.Throws<NullReferenceException>(() => linkedList.Remove(remove));
+        }
 
     }
 }

@@ -39,7 +39,7 @@ namespace Collections
         public Node<T> AddAfter(Node<T> node, T value)
         {
             var newNode = new Node<T>() { Value = value };
-            var inserAfter = Find(sentinel.Next, node.Value);
+            var inserAfter = FindFirst(node.Value);
 
             newNode.Next = inserAfter.Next;
             newNode.Previous = inserAfter;
