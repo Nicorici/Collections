@@ -43,9 +43,15 @@ namespace Collections.Tests
         [Fact]
         public void AddElementAfterTheElementWithTheValue5()
         {
-            var linkedList = new LinkedList<int>() { 6, 5, 4, 3, 2, 1 };
-            var node = new Node<int>() { Value = 5 };
-            linkedList.AddAfter(node, 88);
+            var linkedList = new LinkedList<int>();
+            linkedList.AddFirst(6);
+           var node= linkedList.AddFirst(5);
+            linkedList.AddFirst(4);
+            linkedList.AddFirst(3);
+            linkedList.AddFirst(2);
+            linkedList.AddFirst(1);
+            linkedList.AddAfter(node,88);
+
             Assert.Equal("1 2 3 4 5 88 6", linkedList.Print());
         }
 
@@ -109,16 +115,6 @@ namespace Collections.Tests
             Assert.Throws<NullReferenceException>(() => linkedList.Remove(node));
         }
 
-        [Fact]
-        public void TryRemovingAnElementAlreadyRemovedFromTheList()
-        {
-            var linkedList = new LinkedList<int>();
-            linkedList.AddFirst(3);
-           var remove= linkedList.AddFirst(2);
-            linkedList.AddFirst(1);
-            linkedList.Remove(remove);
-            Assert.Throws<NullReferenceException>(() => linkedList.Remove(remove));
-        }
 
     }
 }
