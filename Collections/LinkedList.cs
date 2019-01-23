@@ -92,7 +92,6 @@ namespace Collections
         private Node<T> Find(Node<T> current, T value, int countElement = 0)
         {
             int sameElementCount = 0;
-            //counts the occurance of the same element
             bool clockwise = current.Equals(sentinel.Next);
 
             if (value.Equals(sentinel.Value))
