@@ -17,6 +17,7 @@ namespace Collections
         {
             sentinel.Next = sentinel;
             sentinel.Previous = sentinel;
+            sentinel.List =this;
         }
 
         public Node<T> FindFirst(T value)
@@ -38,12 +39,17 @@ namespace Collections
 
         public Node<T> AddAfter(Node<T> node, T value)
         {
+            if (node == null)
+                throw new ArgumentNullException();
+            if (!(node.List==this))
+                throw new InvalidOperationException();
             var newNode = new Node<T>() { Value = value };
 
             newNode.Next = node.Next;
             newNode.Previous = node;
             node.Next.Previous = newNode;
             node.Next = newNode;
+            newNode.List = this;
             Count++;
             return newNode;
         }
