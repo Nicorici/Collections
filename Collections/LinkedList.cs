@@ -34,14 +34,14 @@ namespace Collections
 
         public bool Contains(T value)
         {
-            return !(FindFirst(value).Equals(null));
+            return !FindFirst(value).Equals(null);
         }
 
         public Node<T> AddAfter(Node<T> node, T value)
         {
             if (node == null)
                 throw new ArgumentNullException();
-            if (!(node.List == this))
+            if (node.List != this)
                 throw new InvalidOperationException();
             var newNode = new Node<T>() { Value = value };
 
@@ -75,7 +75,7 @@ namespace Collections
         {
             if (node == null)
                 throw new ArgumentNullException();
-            if (!(node.List == this))
+            if (node.List != this)
                 throw new InvalidOperationException();
 
             node.Previous.Next = node.Next;
@@ -161,7 +161,7 @@ namespace Collections
         public IEnumerator<T> GetEnumerator()
         {
             var indexer = sentinel.Next;
-            while (!(indexer.Equals(sentinel)))
+            while (!indexer.Equals(sentinel))
             {
                 yield return indexer.Value;
                 indexer = indexer.Next;
