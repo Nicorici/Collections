@@ -17,7 +17,7 @@ namespace Collections
         {
             sentinel.Next = sentinel;
             sentinel.Previous = sentinel;
-            sentinel.List =this;
+            sentinel.List = this;
         }
 
         public Node<T> FindFirst(T value)
@@ -41,7 +41,7 @@ namespace Collections
         {
             if (node == null)
                 throw new ArgumentNullException();
-            if (!(node.List==this))
+            if (!(node.List == this))
                 throw new InvalidOperationException();
             var newNode = new Node<T>() { Value = value };
 
@@ -56,21 +56,28 @@ namespace Collections
 
         public Node<T> AddFirst(T value)
         {
-           return AddAfter(sentinel, value);
+            return AddAfter(sentinel, value);
         }
 
         public Node<T> AddLast(T value)
         {
-           return AddAfter(sentinel.Previous, value);
+            return AddAfter(sentinel.Previous, value);
         }
 
         public Node<T> AddBefore(Node<T> node, T value)
         {
-           return AddAfter(node.Previous, value);
+            if (node == null)
+                throw new ArgumentNullException();
+            return AddAfter(node.Previous, value);
         }
 
         public void Remove(Node<T> node)
         {
+            if (node == null)
+                throw new ArgumentNullException();
+            if (!(node.List == this))
+                throw new InvalidOperationException();
+
             node.Previous.Next = node.Next;
             node.Next.Previous = node.Previous;
             Count--;
@@ -78,11 +85,15 @@ namespace Collections
 
         public void RemoveFirst()
         {
+            if (Count < 1)
+                throw new InvalidOperationException();
             Remove(sentinel.Next);
         }
 
         public void RemoveLast()
         {
+            if (Count < 1)
+                throw new InvalidOperationException();
             Remove(sentinel.Previous);
         }
 
@@ -104,7 +115,7 @@ namespace Collections
             {
                 if (current.Value.Equals(value))
                 {
-                        return current;
+                    return current;
                 }
                 current = clockwise ? current.Next : current.Previous;
             }
@@ -131,6 +142,11 @@ namespace Collections
 
         public void CopyTo(T[] array, int arrayIndex)
         {
+            if (array == null)
+                throw new ArgumentNullException();
+            if (arrayIndex + Count > array.Length)
+                throw new ArgumentException("The number of elements needed to be copied is greater than " +
+                                            " the availbale space from index to the end of the array");
             var current = sentinel.Next;
             for (int i = arrayIndex; !current.Equals(sentinel); i++, current = current.Next)
                 array[i] = current.Value;
